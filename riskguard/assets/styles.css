@@ -1,0 +1,276 @@
+/* Base visual de la app y del contenedor principal. */
+
+[data-testid="stSidebar"] {
+    display: none;
+}
+
+.main {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background-attachment: fixed;
+}
+
+.block-container {
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 20px;
+    padding: 2rem;
+    margin-top: 1rem;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+}
+
+/* Banner superior con el resumen del modelo. */
+
+.hero-banner {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 55%, #f093fb 100%);
+    padding: 1.4rem 2rem;
+    border-radius: 20px;
+    color: white;
+    margin-bottom: 1.5rem;
+    box-shadow: 0 10px 28px rgba(102, 126, 234, 0.45);
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+}
+
+/* Añade un halo animado para dar profundidad al banner. */
+.hero-banner::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.08) 0%, transparent 70%);
+    animation: rotate 20s linear infinite;
+    pointer-events: none;
+}
+
+@keyframes rotate {
+    from { transform: rotate(0deg); }
+    to   { transform: rotate(360deg); }
+}
+
+/* Columna textual con nombre y subtítulo del producto. */
+.hero-left {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    flex: 0 0 auto;
+}
+
+.hero-title {
+    font-size: 2.1rem;
+    font-weight: 900;
+    margin: 0;
+    letter-spacing: -1px;
+    text-shadow: 0 3px 8px rgba(0, 0, 0, 0.25);
+    background: linear-gradient(to right, #ffffff, #e8e8e8);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    white-space: nowrap;
+}
+
+.hero-subtitle {
+    font-size: 0.72rem;
+    margin-top: 0.3rem;
+    opacity: 0.82;
+    font-weight: 400;
+    letter-spacing: 1.8px;
+    text-transform: uppercase;
+}
+
+/* Grupo de tarjetas con métricas rápidas del modelo. */
+.hero-metrics {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    gap: 0.8rem;
+    flex-wrap: nowrap;
+    justify-content: flex-end;
+    flex: 1 1 auto;
+}
+
+.hero-metric {
+    background: rgba(255, 255, 255, 0.16);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.28);
+    border-radius: 16px;
+    padding: 0.7rem 1.1rem;
+    text-align: center;
+    min-width: 95px;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.hero-metric:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.22);
+    background: rgba(255, 255, 255, 0.24);
+}
+
+.hero-metric-icon {
+    font-size: 1.2rem;
+    line-height: 1;
+    margin-bottom: 0.2rem;
+}
+
+.hero-metric-value {
+    font-size: 1.4rem;
+    font-weight: 900;
+    line-height: 1.15;
+    text-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
+}
+
+.hero-metric-label {
+    font-size: 0.62rem;
+    opacity: 0.88;
+    letter-spacing: 0.9px;
+    text-transform: uppercase;
+    font-weight: 700;
+    margin-top: 0.15rem;
+}
+
+.badge-container {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin: 1.5rem 0;
+    flex-wrap: wrap;
+}
+
+.glass-badge {
+    background: rgba(255, 255, 255, 0.25);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    padding: 10px 20px;
+    border-radius: 20px;
+    color: white;
+    font-weight: 600;
+    font-size: 0.95rem;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease;
+}
+
+.glass-badge:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+}
+
+/* Tarjeta principal que cambia según el nivel de riesgo detectado. */
+.risk-card {
+    padding: 3rem;
+    border-radius: 25px;
+    text-align: center;
+    margin: 2rem 0;
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+    position: relative;
+    overflow: hidden;
+    border: 3px solid;
+}
+
+.risk-alto {
+    background: linear-gradient(135deg, #ff6b6b 0%, #ee5a6f 100%);
+    border-color: #ff4444;
+    animation: pulse-red 2s infinite;
+}
+
+.risk-medio {
+    background: linear-gradient(135deg, #ffd93d 0%, #f9ca24 100%);
+    border-color: #f39c12;
+    color: #2c3e50;
+}
+
+.risk-bajo {
+    background: linear-gradient(135deg, #6bcf7f 0%, #4caf50 100%);
+    border-color: #27ae60;
+}
+
+@keyframes pulse-red {
+    0%, 100% {
+        box-shadow: 0 15px 40px rgba(255, 107, 107, 0.4);
+        transform: scale(1);
+    }
+    50% {
+        box-shadow: 0 20px 50px rgba(255, 107, 107, 0.6);
+        transform: scale(1.01);
+    }
+}
+
+.risk-title {
+    font-size: 3rem;
+    font-weight: 900;
+    margin: 0;
+    text-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.risk-confidence {
+    font-size: 1.5rem;
+    margin-top: 0.5rem;
+    opacity: 0.95;
+}
+
+.risk-model-info {
+    font-size: 1rem;
+    margin-top: 1rem;
+    opacity: 0.85;
+    font-style: italic;
+}
+
+/* Ajustes globales de controles interactivos de Streamlit. */
+.stButton > button {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    border: none;
+    padding: 1rem 2rem;
+    font-size: 1.2rem;
+    font-weight: 700;
+    border-radius: 15px;
+    box-shadow: 0 8px 20px rgba(102, 126, 234, 0.3);
+    transition: all 0.3s ease;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+.stButton > button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 30px rgba(102, 126, 234, 0.5);
+}
+
+.stTabs [data-baseweb="tab-list"] {
+    gap: 20px;
+    background: transparent;
+}
+
+.stTabs [data-baseweb="tab"] {
+    height: 60px;
+    background: linear-gradient(
+        135deg,
+        rgba(102, 126, 234, 0.1) 0%,
+        rgba(118, 75, 162, 0.1) 100%
+    );
+    border-radius: 15px;
+    color: #667eea;
+    font-weight: 600;
+    font-size: 1.1rem;
+    border: 2px solid rgba(102, 126, 234, 0.2);
+}
+
+.stTabs [aria-selected="true"] {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    border-color: #667eea;
+}
+
+h1, h2, h3 {
+    color: #667eea;
+    font-weight: 700;
+}
+
+.stSpinner > div {
+    border-top-color: #667eea !important;
+}
